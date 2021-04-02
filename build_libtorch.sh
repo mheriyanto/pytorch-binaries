@@ -110,5 +110,4 @@ install_requirements
 # Build packages with wheel or so
 build_pytorch
 pack_libtorch
-
 build_wheel
