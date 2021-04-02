@@ -49,5 +49,5 @@ The steps to build it include:
    Note: set the max number of concurrent build jobs to 2 to avoid running out of the RAM.
 
 ## References
-+ https://github.com/ljk53/pytorch-rpi
-+ pytorch-arm-builds (torch and torchvision): https://github.com/nmilosev/pytorch-arm-builds
++ Pre-built LibTorch for ARM32/64 Systems (torch and libtorch) **Tested Ubuntu**: https://github.com/ljk53/pytorch-rpi
++ pytorch-arm-builds (torch and torchvision) **Tested Fedora**: https://github.com/nmilosev/pytorch-arm-builds
