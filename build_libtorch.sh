@@ -3,6 +3,7 @@
 
 set -xe pipefail
 
+# Setting path and type of LibTorch
 SRC_ROOT="$( cd "$(dirname "$0")" ; pwd -P)"
 PYTORCH_ROOT=${PYTORCH_ROOT:-$SRC_ROOT/pytorch}
 PYTORCH_BUILD_VERSION="${PYTORCH_BUILD_VERSION:-1.7.0}"
@@ -46,12 +47,12 @@ checkout_pytorch() {
 }
 
 install_requirements() {
-  retry pip install -qr $PYTORCH_ROOT/requirements.txt
+  retry pip3 install -qr $PYTORCH_ROOT/requirements.txt
 }
 
 build_pytorch() {
   cd $PYTORCH_ROOT
-  python setup.py clean
+  python3 setup.py clean
 
   if [[ $LIBTORCH_VARIANT = *"static"* ]]; then
     STATIC_CMAKE_FLAG="-DTORCH_STATIC=1"
@@ -59,7 +60,7 @@ build_pytorch() {
   time CMAKE_ARGS=${CMAKE_ARGS[@]} \
   EXTRA_CAFFE2_CMAKE_FLAGS="${EXTRA_CAFFE2_CMAKE_FLAGS[@]} $STATIC_CMAKE_FLAG" \
 
-  python setup.py install --user
+  python3 setup.py install --user
 }
 
 pack_libtorch() {
@@ -90,7 +91,7 @@ pack_libtorch() {
 
 build_wheel() {
   cd $PYTORCH_ROOT
-  python setup.py bdist_wheel
+  python3 setup.py bdist_wheel
 
   cd $PYTORCH_ROOT/dist
   for file in *.whl; do
@@ -99,12 +100,14 @@ build_wheel() {
   done
 }
 
+# Step-by-Step
 install_deps
 install_blas
 install_ccache
 checkout_pytorch
 install_requirements
 
+# Build packages with wheel or so
 build_pytorch
 pack_libtorch
 

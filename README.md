@@ -1,13 +1,13 @@
 # Pre-built LibTorch for ARM32/64 Systems
 
-The pre-built package is `https://github.com/wangkuiyi/pytorch-rpi` and `https://github.com/ljk53/pytorch-rpi`.
+The pre-built package is [https://github.com/wangkuiyi/pytorch-rpi](https://github.com/wangkuiyi/pytorch-rpi) and [https://github.com/ljk53/pytorch-rpi](https://github.com/ljk53/pytorch-rpi).
 
-## NVIDIA Drive PX2
+## NVIDIA Jetson Nano
 
 The steps to build it include:
 
-1. Log in to an NVIDIA Drive PX2 computer.
-1. Upgrade the system from Ubuntu 16.04 to Ubuntu 18.04 for a recent Python.
+1. Log in to an NVIDIA Jetson Nano.
+1. Operating System: Ubuntu 18.04 for a recent Python.
 1. Install Clang with `sudo apt install -y clang`.
 1. Set environment variables:
    ```bash
@@ -17,12 +17,13 @@ The steps to build it include:
    ```
 1. Run `./build_libtorch.sh` to build and pack the zip file.
 
-## NVIDIA Jetson Nano
+
+## NVIDIA Drive PX2
 
 The steps to build it include:
 
-1. Log in to an NVIDIA Drive PX2 computer or NVIDIA Jetson Nano.
-1. Operating System: Ubuntu 18.04 for a recent Python.
+1. Log in to an NVIDIA Drive PX2 computer.
+1. Upgrade the system from Ubuntu 16.04 to Ubuntu 18.04 for a recent Python.
 1. Install Clang with `sudo apt install -y clang`.
 1. Set environment variables:
    ```bash
