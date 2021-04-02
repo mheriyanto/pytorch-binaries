@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+# Ref: https://github.com/ljk53/pytorch-rpi/blob/master/build_libtorch.sh
 
 set -xe pipefail
 
 SRC_ROOT="$( cd "$(dirname "$0")" ; pwd -P)"
 PYTORCH_ROOT=${PYTORCH_ROOT:-$SRC_ROOT/pytorch}
-PYTORCH_BUILD_VERSION="${PYTORCH_BUILD_VERSION:-1.7.1}"
+PYTORCH_BUILD_VERSION="${PYTORCH_BUILD_VERSION:-1.7.0}"
 LIBTORCH_VARIANT="${LIBTORCH_VARIANT:-shared-without-deps}"
 
 if [[ "$LIBTORCH_VARIANT" == *"cxx11-abi"* ]]; then
