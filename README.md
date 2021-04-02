@@ -47,3 +47,7 @@ The steps to build it include:
 1. Run `git clone git@github.com:ljk53/pytorch-rpi && cd pytorch-rpi`.
 1. Run `MAX_JOBS=2 LIBTORCH_VARIANT=aarch64-cxx11-abi-shared-without-deps ./build_libtorch.sh`.
    Note: set the max number of concurrent build jobs to 2 to avoid running out of the RAM.
+
+## References
++ Pre-built LibTorch for ARM32/64 Systems (torch and libtorch) **Tested Ubuntu**: https://github.com/ljk53/pytorch-rpi
++ pytorch-arm-builds (torch and torchvision) **Tested Fedora**: https://github.com/nmilosev/pytorch-arm-builds
