@@ -11,9 +11,15 @@ The steps to build it include:
 1. Install Clang with `sudo apt install -y clang`.
 1. Set environment variables:
    ```bash
-   export USE_CUDA=0
+   export USE_CUDA=1
+   export USE_CUDNN=1
+   export MAX_JOBS=4
+   export USE_NNPACK=0
    export USE_QNNPACK=0
    export USE_PYTORCH_QNNPACK=0
+   export BUILD_CAFFE2_OPS=0
+   export USE_MKLDNN=0
+   export USE_OPENCV=0
    ```
 1. Run `./build_libtorch.sh` to build and pack the zip file.
 
