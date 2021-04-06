@@ -4,6 +4,8 @@ The pre-built package is [https://github.com/wangkuiyi/pytorch-rpi](https://gith
 
 ## NVIDIA Jetson Nano
 
+<ins>**Alternative 1**</ins>
+
 The steps to build it include:
 
 1. Log in to an NVIDIA Jetson Nano.
@@ -22,6 +24,35 @@ The steps to build it include:
    export USE_OPENCV=0
    ```
 1. Run `./build_libtorch.sh` to build and pack the zip file.
+
+<ins>**Alternative 2**</ins>
+
+The steps to get libtorch.so:
+
+1. Visit Nvidia forum [here](https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-8-0-now-available/72048). Download PyTorch what do you want, for example PyTorch v1.7.0 ([Python 3.6 - **torch-1.7.0-cp36-cp36m-linux_aarch64.whl**](https://nvidia.box.com/shared/static/cs3xn3td6sfgtene6jdvsxlr366m2dhq.whl))
+1. Follow command below:
+   ```bash
+   $ sudo apt install python3-pip 
+   $ sudo pip3 install torch-1.7.0-cp36-cp36m-linux_aarch64.whl
+   $ pip3 show torch    # to check path of the installed torch 
+   ```
+1. After installation, check libtorch.so in path:
+   ```bash
+   $ cd /usr/local/lib/python3.6/dist-packages/torch/lib/      # that's consistent with output of command above
+   $ ls
+   ```
+1. Sett CMakeLists.txt like below
+   ```cmake
+   set(CMAKE_PREFIX_PATH "/usr/local/lib/python3.6/dist-packages/torch")
+   find_package(Torch REQUIRED)
+   if (Torch_FOUND)
+       message(STATUS "Torch library found!")
+       message(STATUS "    include path: ${TORCH_INCLUDE_DIRS}" \n)
+   else ()
+       message(FATAL_ERROR "Could not locate Torch" \n)
+   endif()
+   ```
+
 
 
 ## NVIDIA Drive PX2
