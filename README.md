@@ -88,3 +88,6 @@ The steps to build it include:
 ## References
 + Pre-built LibTorch for ARM32/64 Systems (torch and libtorch) **Tested Ubuntu**: https://github.com/ljk53/pytorch-rpi
 + pytorch-arm-builds (torch and torchvision) **Tested Fedora**: https://github.com/nmilosev/pytorch-arm-builds
++ Q-engineering: https://github.com/Qengineering
+   + PyTorch-Raspberry-Pi-64-OS: https://github.com/Qengineering/PyTorch-Raspberry-Pi-64-OS
+   + PyTorch-Jetson-Nano: https://github.com/Qengineering/PyTorch-Jetson-Nano
