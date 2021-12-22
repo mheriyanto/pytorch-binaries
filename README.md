@@ -27,7 +27,7 @@ The steps to build it include:
 
 <ins>**Alternative 2**</ins>
 
-The steps to get libtorch.so:
+The steps to get libtorch.so with **GNU C++ compiler**:
 
 1. Visit Nvidia forum [here](https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-8-0-now-available/72048). Download PyTorch what do you want, for example PyTorch v1.7.0 ([Python 3.6 - **torch-1.7.0-cp36-cp36m-linux_aarch64.whl**](https://nvidia.box.com/shared/static/cs3xn3td6sfgtene6jdvsxlr366m2dhq.whl))
 1. Follow command below:
@@ -53,6 +53,44 @@ The steps to get libtorch.so:
    endif()
    ```
 
+<ins>**Alternative 3**</ins>
+
+The steps to get libtorch.so with **Clang C++ compiler**:
+
+1. Visit Qengineering repo [here](https://github.com/Qengineering/PyTorch-Jetson-Nano). Download PyTorch what do you want, for example PyTorch v1.7.0 (Python 3.6 - [**torch-1.7.0a0-cp36-cp36m-linux_aarch64.whl**](https://drive.google.com/file/d/1aWuKu8eqkZwVzFFvguVuwkj0zdCir9qX/view?usp=sharing) and [**torchvision-0.8.1a0+45f960c-cp36-cp36m-linux_aarch64.whl**](https://drive.google.com/file/d/1WhplBjODLjNmYWEvQliCdkt3CqQTsClm/view?usp=sharing))
+1. Follow command below:
+   ```bash
+   $ sudo apt install python3-pip 
+   $ sudo pip3 install torch-1.7.0a0-cp36-cp36m-linux_aarch64.whl
+   $ sudo pip3 install torchvision-0.8.1a0+45f960c-cp36-cp36m-linux_aarch64.whl
+   $ pip3 show torch    # to check path of the installed torch 
+   ```
+1. After installation, check libtorch.so in path:
+   ```bash
+   $ cd /usr/local/lib/python3.6/dist-packages/torch/lib/      # that's consistent with output of command above
+   $ ls
+   $ export CC=/usr/bin/clang
+   $ export CXX=/usr/bin/clang++
+   ```
+1. Comment script in TorchConfig.cmake in file *torch/share/cmake/Torch/*
+   ```bash
+   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+      #set(TORCH_CXX_FLAGS "-D_GLIBCXX_USE_CXX11_ABI=0")
+   endif()
+   ```
+
+3. Sett CMakeLists.txt like below
+   ```cmake
+   set(CMAKE_CXX_FLAGS "-D_GLIBCXX_USE_CXX11_ABI=1")
+   set(CMAKE_PREFIX_PATH "/usr/local/lib/python3.6/dist-packages/torch")
+   find_package(Torch REQUIRED)
+   if (Torch_FOUND)
+       message(STATUS "Torch library found!")
+       message(STATUS "    include path: ${TORCH_INCLUDE_DIRS}" \n)
+   else ()
+       message(FATAL_ERROR "Could not locate Torch" \n)
+   endif()
+   ```
 
 
 ## NVIDIA Drive PX2
