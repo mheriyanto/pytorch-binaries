@@ -129,3 +129,4 @@ The steps to build it include:
 + Q-engineering: https://github.com/Qengineering
    + PyTorch-Raspberry-Pi-64-OS: https://github.com/Qengineering/PyTorch-Raspberry-Pi-64-OS
    + PyTorch-Jetson-Nano: https://github.com/Qengineering/PyTorch-Jetson-Nano
++ **Nvidia** PyTorch for Jetson - version 1.11 now available: https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-11-now-available/72048
